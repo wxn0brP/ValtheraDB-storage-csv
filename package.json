@@ -24,7 +24,7 @@
     },
     "devDependencies": {
         "@types/node": "^24.3.0",
-        "@wxn0brp/db-core": "^0.1.5",
+        "@wxn0brp/db-core": "^0.3.0",
         "tsc-alias": "^1.8.16",
         "typescript": "^5.8.3"
     },
