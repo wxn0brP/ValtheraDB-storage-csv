@@ -1,0 +1,42 @@
+{
+  "name": "@wxn0brp/db-storage-csv",
+  "version": "0.0.3",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "ValtheraDB Storage CSV",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxn0brP/ValtheraDB-storage-csv.git"
+  },
+  "homepage": "https://github.com/wxn0brP/ValtheraDB-storage-csv",
+  "author": "wxn0brP",
+  "license": "MIT",
+  "type": "module",
+  "peerDependencies": {
+    "@wxn0brp/db-core": ">=0.3.0"
+  },
+  "dependencies": {
+    "csv": "^6.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "@wxn0brp/db-core": "^0.3.0",
+    "tsc-alias": "*",
+    "typescript": "*"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js",
+      "default": "./dist/*.js"
+    }
+  }
+}
