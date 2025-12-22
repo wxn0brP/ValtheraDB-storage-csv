@@ -7,33 +7,24 @@ A CSV storage adapter for the `@wxn0brp/db-core` library. This package allows yo
 ### Basic Setup
 
 ```typescript
-import { DbStorageCsv } from '@wxn0brp/db-storage-csv';
-import { ValtheraClass } from '@wxn0brp/db-core';
+import { createCsvValthera } from "@wxn0brp/db-storage-csv";
 
-// Initialize the CSV storage
-const csvStorage = new DbStorageCsv({
+// Initialize the CSV ValtheraDB
+const csvStorageDB = createCsvValthera({
   dir: './data' // Directory where CSV files will be stored
 });
 
 // Or, for a single file
-const singleFileStorage = new DbStorageCsv({
+const singleFileDB = createCsvValthera({
   file: './data.csv' // Path to a single CSV file
 });
-// Note: all collections redirect to the same file
-
-const db = new ValtheraClass({
-  dbAction: csvStorage
-});
+// Note: all collections redirect to the same file, supporting single collection
 ```
 
 ### Options
 
 - `dir`: Path to a directory where CSV files for each collection will be stored.
 - `file`: Path to a single CSV file to be used for storage (mutually exclusive with `dir`).
-
-### Integration
-
-This adapter is designed to work with `@wxn0brp/db-core`. You would typically use it by passing an instance of `DbStorageCsv` to your database core configuration.
 
 ## How it works
 
