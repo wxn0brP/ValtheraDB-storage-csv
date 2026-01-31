@@ -17,14 +17,14 @@
         "bun": "bun run src/test.ts"
     },
     "peerDependencies": {
-        "@wxn0brp/db-core": ">=0.3.0"
+        "@wxn0brp/db-core": ">=0.4.0"
     },
     "dependencies": {
         "csv": "^6.4.1"
     },
     "devDependencies": {
         "@types/node": "*",
-        "@wxn0brp/db-core": "^0.3.0",
+        "@wxn0brp/db-core": "^0.4.0",
         "tsc-alias": "*",
         "typescript": "*"
     },
