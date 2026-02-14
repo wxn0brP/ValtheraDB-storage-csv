@@ -1,7 +1,7 @@
 import { CustomFileCpu } from "@wxn0brp/db-core";
 import { CustomActionsBase } from "@wxn0brp/db-core/base/custom";
 import { VQuery } from "@wxn0brp/db-core/types/query";
-import { access, mkdir, readdir } from "fs/promises";
+import { access, mkdir, readdir, rm } from "fs/promises";
 import { parse, stringify } from "csv/sync";
 import { readFile, writeFile } from "fs/promises";
 
@@ -73,5 +73,10 @@ export class DbStorageCsv extends CustomActionsBase {
         } else {
             return [];
         }
+    }
+
+    async removeCollection(config: VQuery): Promise<boolean> {
+        await rm(this._getPath(config));
+        return true;
     }
 }
