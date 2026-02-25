@@ -1,0 +1,10 @@
+{
+    cmd: "bun run bun",
+    watch: [
+        "src",
+    ],
+    restart_cmd: "clear",
+    events: {
+        rs: "clear",
+    },
+}
