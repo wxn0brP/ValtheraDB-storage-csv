@@ -7,3 +7,4 @@ yarn.lock
 bun.lock
 test.ts
 data
+*.csv

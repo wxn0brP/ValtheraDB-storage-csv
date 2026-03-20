@@ -1,9 +1,7 @@
 import { CustomFileCpu } from "@wxn0brp/db-core";
 import { CustomActionsBase } from "@wxn0brp/db-core/base/custom";
-import { VQuery } from "@wxn0brp/db-core/types/query";
-import { access, mkdir, readdir, rm } from "fs/promises";
 import { parse, stringify } from "csv/sync";
-import { readFile, writeFile } from "fs/promises";
+import { access, mkdir, readdir, readFile, rm, writeFile } from "fs/promises";
 
 export interface Opts {
     file?: string;
@@ -16,28 +14,28 @@ export class DbStorageCsv extends CustomActionsBase {
         this.fileCpu = new CustomFileCpu(this.read.bind(this), this.write.bind(this));
     }
 
-    _getPath(config: VQuery) {
+    _getPath(collection: string) {
         if (this.opts.file) {
             return this.opts.file;
         } else if (this.opts.dir) {
-            return this.opts.dir + "/" + config.collection + ".csv";
+            return this.opts.dir + "/" + collection + ".csv";
         }
     }
 
     async read(file: string) {
-        const path = this._getPath({ collection: file });
+        const path = this._getPath(file);
         const data = await readFile(path, "utf-8");
         return parse(data, { columns: true });
     }
 
     async write(file: string, data: any) {
         const string = stringify(data, { header: true });
-        const path = this._getPath({ collection: file });
+        const path = this._getPath(file);
         await writeFile(path, string);
     }
 
-    async ensureCollection(config: VQuery) {
-        const path = this._getPath(config);
+    async ensureCollection(collection: string) {
+        const path = this._getPath(collection);
         if (this.opts.file) {
             try {
                 await access(path);
@@ -55,8 +53,8 @@ export class DbStorageCsv extends CustomActionsBase {
         return true;
     }
 
-    async issetCollection(config: VQuery): Promise<boolean> {
-        const path = this._getPath(config);
+    async issetCollection(collection: string): Promise<boolean> {
+        const path = this._getPath(collection);
         try {
             await access(path);
             return true;
@@ -75,8 +73,8 @@ export class DbStorageCsv extends CustomActionsBase {
         }
     }
 
-    async removeCollection(config: VQuery): Promise<boolean> {
-        await rm(this._getPath(config));
+    async removeCollection(collection: string): Promise<boolean> {
+        await rm(this._getPath(collection));
         return true;
     }
 }
