@@ -32,7 +32,7 @@
         "@types/node": "*",
         "@wxn0brp/db-core": "^0.10.0",
         "tsc-alias": "*",
-        "typescript": "*"
+        "typescript": "^5"
     },
     "files": [
         "dist"
