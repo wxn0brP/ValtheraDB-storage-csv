@@ -25,7 +25,20 @@ export class DbStorageCsv extends CustomActionsBase {
     async read(file: string) {
         const path = this._getPath(file);
         const data = await readFile(path, "utf-8");
-        return parse(data, { columns: true });
+        const records = parse(data, { columns: true, cast: true });
+        for (const record of records) {
+            for (const key of Object.keys(record)) {
+                const val = record[key];
+                if (val === "") {
+                    delete record[key];
+                } else if (typeof val === "string" && (val.startsWith("{") || val.startsWith("["))) {
+                    try {
+                        record[key] = JSON.parse(val);
+                    } catch {}
+                }
+            }
+        }
+        return records;
     }
 
     async write(file: string, data: any) {
@@ -39,12 +52,14 @@ export class DbStorageCsv extends CustomActionsBase {
         if (this.opts.file) {
             try {
                 await access(path);
+                return false;
             } catch (error) {
                 await writeFile(path, "");
             }
         } else if (this.opts.dir) {
             try {
                 await access(path);
+                return false;
             } catch (error) {
                 await mkdir(path.split("/").slice(0, -1).join("/"), { recursive: true });
                 await writeFile(path, "");
@@ -67,7 +82,12 @@ export class DbStorageCsv extends CustomActionsBase {
         if (this.opts.file) {
             return [this.opts.file];
         } else if (this.opts.dir) {
-            return await readdir(this.opts.dir, { recursive: true });
+            try {
+                const files = await readdir(this.opts.dir, { recursive: true });
+                return files.map(f => f.endsWith(".csv") ? f.slice(0, -4) : f);
+            } catch {
+                return [];
+            }
         } else {
             return [];
         }
