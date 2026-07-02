@@ -19,8 +19,7 @@
         "csv"
     ],
     "scripts": {
-        "build": "tsc && tsc-alias",
-        "bun": "bun run src/test.ts"
+        "build": "tsc && tsc-alias"
     },
     "peerDependencies": {
         "@wxn0brp/db-core": "^0.11.1"
