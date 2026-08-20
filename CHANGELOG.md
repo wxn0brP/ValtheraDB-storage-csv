@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.120.0](https://github.com/wxn0brP/ValtheraDB-storage-csv/compare/v0.110.0...v0.120.0) (2026-08-20)
+
+
+### Features
+
+* biome & bump deps ([c67d892](https://github.com/wxn0brP/ValtheraDB-storage-csv/commit/c67d8928bf191180001de2d270c31513ae4a4192))
+* e2e ([05dd02e](https://github.com/wxn0brP/ValtheraDB-storage-csv/commit/05dd02e837435c531c5af541d505b3b513ed1d40))
+
 ## [0.110.0](https://github.com/wxn0brP/ValtheraDB-storage-csv/compare/v0.100.0...v0.110.0) (2026-05-17)
 
 
