@@ -2,6 +2,7 @@ import { CustomFileCpu } from "@wxn0brp/db-core";
 import { CustomActionsBase } from "@wxn0brp/db-core/base/custom";
 import { parse, stringify } from "csv/sync";
 import { access, mkdir, readdir, readFile, rm, writeFile } from "fs/promises";
+import { version } from "./version";
 
 export interface Opts {
 	file?: string;
@@ -9,6 +10,8 @@ export interface Opts {
 }
 
 export class DbStorageCsv extends CustomActionsBase {
+	version = version;
+
 	constructor(public opts: Opts) {
 		super();
 		this.fileCpu = new CustomFileCpu(
