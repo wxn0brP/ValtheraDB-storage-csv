@@ -33,20 +33,18 @@ export class DbStorageCsv extends CustomActionsBase {
 		const data = await readFile(path, "utf-8");
 		const records = parse(data, {
 			columns: true,
-			cast: true,
 		});
 		for (const record of records) {
 			for (const key of Object.keys(record)) {
 				const val = record[key];
-				if (val === "") {
+				if (val === "" || val === undefined || val === null) {
 					delete record[key];
-				} else if (
-					typeof val === "string" &&
-					(val.startsWith("{") || val.startsWith("["))
-				) {
-					try {
-						record[key] = JSON.parse(val);
-					} catch {}
+					continue;
+				}
+				try {
+					record[key] = JSON.parse(val);
+				} catch {
+					// keep as string if not valid JSON
 				}
 			}
 		}
@@ -54,7 +52,14 @@ export class DbStorageCsv extends CustomActionsBase {
 	}
 
 	async write(file: string, data: any) {
-		const string = stringify(data, {
+		const transformed = data.map((row: any) => {
+			const newRow: Record<string, string> = {};
+			for (const [k, v] of Object.entries(row)) {
+				newRow[k] = v === undefined ? "" : JSON.stringify(v);
+			}
+			return newRow;
+		});
+		const string = stringify(transformed, {
 			header: true,
 		});
 		const path = this._getPath(file);
