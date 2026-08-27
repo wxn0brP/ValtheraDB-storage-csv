@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.120.1](https://github.com/wxn0brP/ValtheraDB-storage-csv/compare/v0.120.0...v0.120.1) (2026-08-27)
+
+
+### Features
+
+* version support ([f57fce7](https://github.com/wxn0brP/ValtheraDB-storage-csv/commit/f57fce77b70e75f12f8d4b4e7dba77c51e2ee571))
+
+
+### Bug Fixes
+
+* work ([729f7f8](https://github.com/wxn0brP/ValtheraDB-storage-csv/commit/729f7f88a109583bf2110af31dd538b554ad6171))
+
 ## [0.120.0](https://github.com/wxn0brP/ValtheraDB-storage-csv/compare/v0.110.0...v0.120.0) (2026-08-20)
 
 
